@@ -55,6 +55,9 @@ Add this section to fluent-bit.conf:
 | Batch_Retry_Limit                   | When Batch_Retry_Limit is set to empty, means that there is not limit for the number of retries that the plugin can do.                                |                                                  |
 | Time_Zone                           | Specify TZInfo based region (e.g. Asia/Taipei).                                                                                                        | `""`                                             |
 | Logging                             | Specify Log Level. See: [logrus logging levels](https://godoc.org/github.com/sirupsen/logrus#pkg-variables)                                            | `info`                                           |
+| Use_Azure_Emulator                  | Set "true" if you use emulator (i.e Azurite)
+| Azure_Emulator_Endpoint             | Specify Azure Emulator Endpoint, i.e http://127.0.0.1:10000 (without trailing slash)
+
 
 ## Useful links
 

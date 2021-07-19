@@ -50,7 +50,12 @@ func NewConfig(c PluginConfig) (*AzblobConfig, error) {
 		return nil, fmt.Errorf("cannot specify empty string to Azure_Container")
 	}
 
-	urlString := fmt.Sprintf("https://%s.blob.core.windows.net/%s", c.Get("Azure_Storage_Account"), c.Get("Azure_Container"))
+	urlString := ""
+	if c.Get("Use_Azure_Emulator") == "true" {
+		urlString = fmt.Sprintf("%s/%s/%s", c.Get("Azure_Emulator_Endpoint"), c.Get("Azure_Storage_Account"), c.Get("Azure_Container"))
+	} else {
+		urlString = fmt.Sprintf("https://%s.blob.core.windows.net/%s", c.Get("Azure_Storage_Account"), c.Get("Azure_Container"))
+	}
 
 	var credential azblob.Credential
 	if c.Get("Azure_Storage_SAS") != "" {
